@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.UUID;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
@@ -16,13 +18,19 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(uniqueConstraints = {@UniqueConstraint(columnNames = "email")})
-public class User {
+public class User extends UserDateAudit {
 
-    public enum Role {USER, ADMIN, USER_MANAGER}
+    // Generated SerialVersionUID
+    private static final long serialVersionUID = -3269634734584729134L;
+
+    public enum Role {
+        USER, ADMIN
+    }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    // @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(columnDefinition = "varchar(255)")
+    private String id = UUID.randomUUID().toString(); // UUID
 
     @NotEmpty
     @Email
@@ -35,7 +43,7 @@ public class User {
     @NotNull
     @Enumerated(EnumType.STRING)
     private Role role;
-    
+
 }
 
 

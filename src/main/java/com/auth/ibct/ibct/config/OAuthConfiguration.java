@@ -1,6 +1,5 @@
 package com.auth.ibct.ibct.config;
 
-
 import org.springframework.beans.factory.annotation.Value;
 
 import org.springframework.context.annotation.Bean;
@@ -26,19 +25,19 @@ public class OAuthConfiguration extends AuthorizationServerConfigurerAdapter {
 
     private final UserDetailsService userService;
 
-    @Value("${jwt.clientId:test-client-id}")
+    @Value("${jwt.clientId}")
     private String clientId;
 
-    @Value("${jwt.client-secret:secret}")
+    @Value("${jwt.client-secret}")
     private String clientSecret;
 
-    @Value("${jwt.accessTokenValidititySeconds:43200}") // 12 hours
+    @Value("${jwt.accessTokenValidititySeconds}")
     private int accessTokenValiditySeconds;
 
-    @Value("${jwt.authorizedGrantTypes:password,authorization_code,refresh_token}")
+    @Value("${jwt.authorizedGrantTypes}")
     private String[] authorizedGrantTypes;
 
-    @Value("${jwt.refreshTokenValiditySeconds:2592000}") // 30 days
+    @Value("${jwt.refreshTokenValiditySeconds}")
     private int refreshTokenValiditySeconds;
 
     public OAuthConfiguration(AuthenticationManager authenticationManager, PasswordEncoder passwordEncoder, UserDetailsService userService) {

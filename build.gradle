@@ -1,6 +1,8 @@
 plugins {
 	id 'org.springframework.boot' version '2.2.2.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+	id "org.flywaydb.flyway" version "6.1.2"
+
 	id 'java'
 }
 
@@ -24,10 +26,10 @@ dependencies {
 	implementation 'org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:2.2.2.RELEASE'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.2.2.RELEASE'
-	implementation 'com.h2database:h2'
 	implementation 'org.projectlombok:lombok:1.18.8'
 	annotationProcessor 'org.projectlombok:lombok:1.18.8'
 
+	runtimeOnly 'mysql:mysql-connector-java'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
@@ -37,4 +39,11 @@ dependencies {
 
 test {
 	useJUnitPlatform()
+}
+
+// Flyway Migration Configuration
+flyway {
+    url = 'jdbc:mysql://localhost:3306/auth?serverTimezone=UTC'
+    user = 'authdev'
+	password = '1qaz!QAZ'
 }

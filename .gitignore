@@ -45,3 +45,6 @@ manifest.yml
 overridedb.*
 target
 transaction-logs
+
+## Migrations ##
+migrations/

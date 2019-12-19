@@ -2,6 +2,8 @@ package com.auth.ibct.ibct.controllers;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.UUID;
+
 import com.auth.ibct.ibct.entities.User;
 import com.auth.ibct.ibct.repositories.UserRepository;
 
@@ -29,7 +31,12 @@ public class LoginController {
 
     @PostMapping
     User signin(@RequestParam String email, @RequestParam String password) {
-        User u = new User(null, email, passwordEncoder.encode(password), User.Role.USER);
+        
+        User u = new User(UUID.randomUUID().toString(), email, passwordEncoder.encode(password), User.Role.USER);
+
+        u.setCreatedBy(u.getId().toString());
+        u.setCreatedAt(java.time.Instant.now());
+
         return repository.save(u);
     }
 
