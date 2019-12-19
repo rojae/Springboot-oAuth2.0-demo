@@ -17,19 +17,19 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @Validated
 @RestController
-@RequestMapping("/api/signin")
-public class LoginController {
+@RequestMapping("v1/api/auth")
+public class AuthController {
 
     private final UserRepository repository;
 
     private final PasswordEncoder passwordEncoder;
 
-    public LoginController(UserRepository repository, PasswordEncoder passwordEncoder) {
+    public AuthController(UserRepository repository, PasswordEncoder passwordEncoder) {
         this.repository = repository;
         this.passwordEncoder = passwordEncoder;
     }
 
-    @PostMapping
+    @PostMapping("/signup")
     User signin(@RequestParam String email, @RequestParam String password) {
         
         User u = new User(UUID.randomUUID().toString(), email, passwordEncoder.encode(password), User.Role.USER);

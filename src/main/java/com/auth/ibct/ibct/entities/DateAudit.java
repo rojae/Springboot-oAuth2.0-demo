@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import org.springframework.data.annotation.CreatedDate;
@@ -27,11 +28,13 @@ public abstract class DateAudit implements Serializable {
     
     private static final long serialVersionUID = 1L;
 
-	@CreatedDate
+    @CreatedDate
+    @JsonIgnore
     @Column(name="createdAt", nullable = true, updatable = false, columnDefinition = "datetime default GETDATE()")
     private Instant createdAt;
 
     @LastModifiedDate
+    @JsonIgnore
     @Column(name="updatedAt", nullable = true)
     private Instant updatedAt;
 }

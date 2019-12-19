@@ -53,16 +53,16 @@ public class ServerSecurityConfig extends WebSecurityConfigurerAdapter {
 
         security.cors()
                 .and()
-            .csrf()
-                .disable()
-            .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-            .authorizeRequests()
-                .antMatchers("/api/**")
-                    .permitAll()
-                .anyRequest()
-                    .authenticated();
+                .csrf()
+                    .disable()
+                .sessionManagement()
+                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                    .and()
+                .authorizeRequests()
+                    .antMatchers("/v1/api/**")
+                        .permitAll()
+                    .anyRequest()
+                        .authenticated();
     }
 
     @Bean
