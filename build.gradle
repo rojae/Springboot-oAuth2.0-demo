@@ -43,7 +43,7 @@ test {
 
 // Flyway Migration Configuration
 flyway {
-    url = 'jdbc:mysql://localhost:3306/auth?serverTimezone=UTC'
+    url = 'jdbc:mysql://121.134.238.182:3306/auth?serverTimezone=UTC'
     user = 'authdev'
 	password = '1qaz!QAZ'
 }
